@@ -7,23 +7,23 @@ resource "aws_instance" "main" {
     depends_on = [aws_key_pair.terraformkey]
     tags = local.common_name_suffix[count.index]
 
-  #   provisioner "local-exec" {
-  #   command = "echo ${self.public_ip} > inventory.ini"
-  #   }
-  #     connection {
-  #     type        = "ssh"
-  #     user        = "ec2-user"
-  #     private_key = file("C:/DevOps/keys/terraform")
-  #     host        = self.public_ip
-  # }
+    provisioner "local-exec" {
+    command = "echo ${self.public_ip} > inventory.ini"
+    }
+      connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = file("C:/DevOps/keys/terraform")
+      host        = self.public_ip
+  }
 
-  #   provisioner "remote-exec" {
-  #     inline = [
-  #       "sudo dnf install nginx -y",
-  #       "sudo systemctl enable nginx",
-  #       "sudo systemctl start nginx"
-  #     ]
-  #     }
+    provisioner "remote-exec" {
+      inline = [
+        "sudo dnf install nginx -y",
+        "sudo systemctl enable nginx",
+        "sudo systemctl start nginx"
+      ]
+      }
 
 }
 
