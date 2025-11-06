@@ -1,6 +1,9 @@
 variable "instance_type"{
-    type = string
-    default = "t3.micro"
+    type = map
+    default = {
+        dev = "t2.micro"
+        prod = "t3.micro"
+    }
 }
 
 variable "instances"{
@@ -8,13 +11,21 @@ variable "instances"{
 }
 
 variable env {
-    default = "prod"
+    default = {
+       dev = "dev"
+       prod = "prod"
+    }
 }
 
-variable "tags"{
+variable "project" {
+    default = "Roboshop"
+}
+
+variable "common_tags"{
     type = map
     default = {
         Project = "Roboshop"
+        Terraform = true
     }
 }
 
